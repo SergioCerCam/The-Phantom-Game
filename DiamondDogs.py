@@ -50,11 +50,19 @@ def main():
 
 #---Le pongo un titulo a la ventana del juego que se vera arriba:
 
-    pygame.display.set_caption('The Phantom Game')
+    pygame.display.set_caption('Snake Eater')
 
 #---Le pongo una imagen de fondo a la ventana:
 
     background_image = load_image('fondo.jpg')
+
+#---Añado una musica introductoria para el menu:
+    
+    pygame.mixer.music.load("menu.mp3")
+
+#---Añado un -1 para que cuando acabe la musica vuelva a empezar:
+
+    pygame.mixer.music.play(-1)
 
 #---Creo un bucle para que se pueda cerrar la ventana al darle a la x:
     
