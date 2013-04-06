@@ -11,8 +11,8 @@ pygame.init()
 
 #---Creo la ventana donde se vera el juego:
 
-Ancho = 600
-Alto = 480
+Ancho = 700
+Alto = 429
 
 #---Funcion fondo pantalla
 def load_image(filename, transparent=False):
@@ -48,11 +48,15 @@ def salir(keys):
 
 def menu(screen, select):
 
-    if select == 1:
-        empezarjuego, empezarjuegox = texto("Empezar Partida", Ancho/2, Alto/1-140, (255, 0, 0))
-        salirse, salirsex = texto("Salir", Ancho/2, Alto/1-100)
+        if select == 1:
+                empezarjuego, empezarjuegox = texto("Empezar Partida", Ancho/1-180, Alto/1-120, (255, 0, 0))
+                salirse, salirsex = texto("Salir", Ancho/1-300, Alto/1-80)
+
+        if select == 2:
+                empezarjuego, empezarjuegox = texto("Empezar Partida", Ancho/1-180, Alto/1-120)
+                salirse, salirsex = texto("Salir", Ancho/1-300, Alto/1-80, (255, 0, 0))
         
-	screen.blit(empezarjuego, empezarjuegox)
+        screen.blit(empezarjuego, empezarjuegox)
         screen.blit(salirse, salirsex)
 
 
@@ -88,9 +92,11 @@ def main():
         
         if keys[K_UP] and select > 1:
             select -=1
+	if keys[K_DOWN] and select < 2:
+	    select +=2
 
         elif keys[K_SPACE]:
-            if select == 1:
+            if select == 2:
                 sys.exit()
                 
         screen.blit(background_image, (0, 0))
