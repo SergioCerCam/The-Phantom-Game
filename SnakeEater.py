@@ -2,7 +2,7 @@
 
 #-Importo las librerias:
 
-import pygame
+import pygame, sys
 from pygame.locals import *
 
 #---Inicio pygame:
@@ -35,12 +35,23 @@ def texto(texto, posx, posy, color=(255,255,255), tam=30):
     salida_rect.centery = posy
     return salida, salida_rect
 
+#---Funcion para salir utilizando la tecla escape y a traves del menu:
+
+def salir(keys):
+    for eventos in pygame.event.get():
+        if eventos.type == QUIT:
+            sys.exit(0)
+        if keys[K_ESCAPE]:
+            sys.exit(0)
+
 #---Funcion para crear el menu principal del juego
+
 def menu(screen, select):
+
     if select == 1:
-        empezarjuego, empezarjuegox = texto("Empezar Partida", Ancho/2, Alto/1-140, (255, 0, 0))
+        salirse, salirsex = texto("Salir", Ancho/2, Alto/1-140, (255, 0, 0))
         
-        screen.blit(empezarjuego, empezarjuegox)
+        screen.blit(salirse, salirsex)
 
 
 #---Funcion principal
@@ -64,15 +75,20 @@ def main():
 
     pygame.mixer.music.play(-1)
 
-#---Creo un bucle para que se pueda cerrar la ventana al darle a la x:
+#---Especifico que al presionar la tecla enter salga del juego:
     
     select = 1
     
-    salir=False
-    while not salir:
-        for event in pygame.event.get():
-            if event.type == QUIT:
-                salir=True
+    while True:
+        keys = pygame.key.get_pressed()
+        salir(keys)
+        
+        if keys[K_UP] and select > 1:
+            select -=1
+
+        elif keys[K_SPACE]:
+            if select == 1:
+                sys.exit()
                 
         screen.blit(background_image, (0, 0))
 	menu(screen, select)
