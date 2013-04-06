@@ -72,7 +72,7 @@ def main():
 
 #---Le pongo una imagen de fondo a la ventana:
 
-    background_image = load_image('fondo.jpg')
+    background_image = load_image('fondoreal.jpg')
 
 #---Añado una musica introductoria para el menu:
     
