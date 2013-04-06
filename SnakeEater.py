@@ -49,9 +49,12 @@ def salir(keys):
 def menu(screen, select):
 
     if select == 1:
-        salirse, salirsex = texto("Salir", Ancho/2, Alto/1-140, (255, 0, 0))
+        empezarjuego, empezarjuegox = texto("Empezar Partida", Ancho/2, Alto/1-140, (255, 0, 0))
+        salirse, salirsex = texto("Salir", Ancho/2, Alto/1-100)
         
+	screen.blit(empezarjuego, empezarjuegox)
         screen.blit(salirse, salirsex)
+
 
 
 #---Funcion principal
@@ -98,4 +101,5 @@ def main():
     
 if __name__== '__main__':
     main()
+
 
