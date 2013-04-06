@@ -92,8 +92,8 @@ def main():
         
         if keys[K_UP] and select > 1:
             select -=1
-	if keys[K_DOWN] and select < 2:
-	    select +=2
+	elif keys[K_DOWN] and select < 2:
+	    select +=1
 
         elif keys[K_SPACE]:
             if select == 2:
