@@ -49,15 +49,23 @@ def salir(keys):
 def menu(screen, select):
 
         if select == 1:
-                empezarjuego, empezarjuegox = texto("Empezar Partida", Ancho/1-180, Alto/1-120, (255, 0, 0))
-                salirse, salirsex = texto("Salir", Ancho/1-300, Alto/1-80)
+            empezarjuego, empezarjuegox = texto("Empezar Partida", Ancho/1-180, Alto/1-120, (255, 0, 0))
+            salirse, salirsex = texto("Salir", Ancho/1-300, Alto/1-80)
+            creditos, creditosx = texto("Creditos", Ancho/1-90, Alto/2+180)
 
         if select == 2:
-                empezarjuego, empezarjuegox = texto("Empezar Partida", Ancho/1-180, Alto/1-120)
-                salirse, salirsex = texto("Salir", Ancho/1-300, Alto/1-80, (255, 0, 0))
+            empezarjuego, empezarjuegox = texto("Empezar Partida", Ancho/1-180, Alto/1-120)
+            salirse, salirsex = texto("Salir", Ancho/1-300, Alto/1-80, (255, 0, 0))
+            creditos, creditosx = texto("Creditos", Ancho/1-90, Alto/2+180)
+
+        if select == 3:
+            empezarjuego, empezarjuegox = texto("Empezar Partida", Ancho/1-180, Alto/1-120)
+            salirse, salirsex = texto("Salir", Ancho/1-300, Alto/1-80)
+            creditos, creditosx = texto("Creditos", Ancho/1-90, Alto/2+180, (255, 0, 0))
         
         screen.blit(empezarjuego, empezarjuegox)
         screen.blit(salirse, salirsex)
+        screen.blit(creditos, creditosx)
 
 
 
@@ -94,6 +102,9 @@ def main():
             select -=1
 	elif keys[K_DOWN] and select < 2:
 	    select +=1
+
+        elif keys[K_RIGHT] and select < 3:
+            select +=1
 
         elif keys[K_SPACE]:
             if select == 2:
