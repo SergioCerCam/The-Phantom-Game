@@ -67,7 +67,35 @@ def menu(screen, select):
         screen.blit(salirse, salirsex)
         screen.blit(creditos, creditosx)
 
+#---Funcion para crear la siguiente pantalla cuando el usuario presione "Empezar Partida":
 
+def juego_nuevo(screen):
+
+    fondo = load_image("juego_nuevo.jpg");
+ 
+    while True:
+        
+        keys = pygame.key.get_pressed()
+        salir(keys)
+        
+        screen.blit(fondo, (0,0))
+        pygame.display.flip()
+        pygame.time.delay(100)
+        
+#---Pantalla de creditos:
+
+def creditos(screen):
+
+    fondo = load_image("creditos.jpg");
+
+    while True:
+        
+        keys = pygame.key.get_pressed()
+        salir(keys)
+
+        screen.blit(fondo, (0,0))
+        pygame.display.flip()
+        pygame.time.delay(100)
 
 #---Funcion principal
 def main():
@@ -90,7 +118,7 @@ def main():
 
     pygame.mixer.music.play(-1)
 
-#---Especifico que al presionar la tecla enter salga del juego:
+#---Especifico que al presionar la tecla enter salga del juego y que entre en los distintos apartados del menu:
     
     select = 1
     
@@ -100,6 +128,7 @@ def main():
         
         if keys[K_UP] and select > 1:
             select -=1
+
 	elif keys[K_DOWN] and select < 2:
 	    select +=1
 
@@ -107,8 +136,12 @@ def main():
             select +=1
 
         elif keys[K_SPACE]:
-            if select == 2:
+            if select == 1:
+                juego_nuevo(screen)
+            elif select == 2:
                 sys.exit()
+            elif select == 3:
+                creditos(screen)
                 
         screen.blit(background_image, (0, 0))
 	menu(screen, select)
