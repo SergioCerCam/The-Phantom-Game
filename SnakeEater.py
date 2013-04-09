@@ -9,6 +9,8 @@ from pygame.locals import *
 
 pygame.init()
 
+clock = pygame.time.Clock()
+
 #---Creo la ventana donde se vera el juego:
 
 Ancho = 700
@@ -126,14 +128,11 @@ def main():
         keys = pygame.key.get_pressed()
         salir(keys)
         
-        if keys[K_UP] and select > 1:
+        if keys[K_UP] and select != 1:
             select -=1
 
-	elif keys[K_DOWN] and select < 2:
+	elif keys[K_DOWN] and select != 3:
 	    select +=1
-
-        elif keys[K_RIGHT] and select < 3:
-            select +=1
 
         elif keys[K_SPACE]:
             if select == 1:
@@ -146,6 +145,7 @@ def main():
         screen.blit(background_image, (0, 0))
 	menu(screen, select)
         pygame.display.flip()
+	clock.tick(8)
 
     return 0
     
