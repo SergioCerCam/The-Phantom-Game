@@ -103,21 +103,9 @@ def creditos(screen):
 def main():
     
     screen = pygame.display.set_mode((Ancho, Alto))
-
-#---Le pongo un titulo a la ventana del juego que se vera arriba:
-
     pygame.display.set_caption('Snake Eater')
-
-#---Le pongo una imagen de fondo a la ventana:
-
-    background_image = load_image('fondoreal.jpg')
-
-#---Añado una musica introductoria para el menu:
-    
+    background_image = load_image('fondoreal.jpg')   
     pygame.mixer.music.load("menu.mp3")
-
-#---Añado un -1 para que cuando acabe la musica vuelva a empezar:
-
     pygame.mixer.music.play(-1)
 
 #---Especifico que al presionar la tecla enter salga del juego y que entre en los distintos apartados del menu:
