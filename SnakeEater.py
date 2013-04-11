@@ -88,27 +88,27 @@ def volver(screen, select):
 def dificultad (screen, select):
 
         if select == 1:
-            level1, level1X = texto("Nivel Liquid", Ancho/1-530, Alto/1-160, (255, 0, 0))
-            level2, level2X = texto("Nivel Solid", Ancho/1-548, Alto/1-120, (0, 0, 0))
-            level3, level3X = texto("Nivel Big Boss", Ancho/1-528, Alto/1-80, (0, 0, 0))
+            level1, level1X = texto("Facil Liquid", Ancho/1-548, Alto/1-160, (255, 0, 0))
+            level2, level2X = texto("Normal Solid", Ancho/1-548, Alto/1-120, (0, 0, 0))
+            level3, level3X = texto("Dificil Big Boss", Ancho/1-548, Alto/1-80, (0, 0, 0))
             volver, volverX = texto("Volver", Ancho/1-120, Alto/1-20, (0, 0, 0))
 
         if select == 2:
-            level1, level1X = texto("Nivel Liquid", Ancho/1-530, Alto/1-160, (0, 0, 0))
-            level2, level2X = texto("Nivel Solid", Ancho/1-548, Alto/1-120, (255, 0, 0))
-            level3, level3X = texto("Nivel Big Boss", Ancho/1-528, Alto/1-80, (0, 0, 0))
+            level1, level1X = texto("Facil Liquid", Ancho/1-548, Alto/1-160, (0, 0, 0))
+            level2, level2X = texto("Normal Solid", Ancho/1-548, Alto/1-120, (255, 0, 0))
+            level3, level3X = texto("Dificil Big Boss", Ancho/1-548, Alto/1-80, (0, 0, 0))
             volver, volverX = texto("Volver", Ancho/1-120, Alto/1-20, (0, 0, 0))
 
         if select == 3:
-            level1, level1X = texto("Nivel Liquid", Ancho/1-530, Alto/1-160, (0, 0, 0))
-            level2, level2X = texto("Nivel Solid", Ancho/1-548, Alto/1-120, (0, 0, 0))
-            level3, level3X = texto("Nivel Big Boss", Ancho/1-528, Alto/1-80, (255, 0, 0))
+            level1, level1X = texto("Facil Liquid", Ancho/1-548, Alto/1-160, (0, 0, 0))
+            level2, level2X = texto("Normal Solid", Ancho/1-548, Alto/1-120, (0, 0, 0))
+            level3, level3X = texto("Dificil Big Boss", Ancho/1-548, Alto/1-80, (255, 0, 0))
             volver, volverX = texto("Volver", Ancho/1-120, Alto/1-20, (0,  0, 0))
         
         if select == 4:
-            level1, level1X = texto("Nivel Liquid", Ancho/1-530, Alto/1-160, (0, 0, 0))
-            level2, level2X = texto("Nivel Solid", Ancho/1-548, Alto/1-120, (0, 0, 0))
-            level3, level3X = texto("Nivel Big Boss", Ancho/1-528, Alto/1-80, (0, 0, 0))
+            level1, level1X = texto("Facil Liquid", Ancho/1-548, Alto/1-160, (0, 0, 0))
+            level2, level2X = texto("Normal Solid", Ancho/1-548, Alto/1-120, (0, 0, 0))
+            level3, level3X = texto("Dificil Big Boss", Ancho/1-548, Alto/1-80, (0, 0, 0))
             volver, volverX = texto("Volver", Ancho/1-120, Alto/1-20, (255, 0, 0))
 
         screen.blit(level1, level1X)
@@ -156,16 +156,17 @@ def creditos(screen):
     screen = pygame.display.set_mode((Ancho, Alto))
     pygame.display.set_caption("Snake Eater")
 
-    select = 1
+    select = 4
     
     while True:
         
         keys = pygame.key.get_pressed()
         salir(keys)
 
-        
+      
+
         if keys[K_SPACE]:
-            if select == 1:
+            if select == 4:
                 main()
 
         screen.blit(fondo, (0,0))
