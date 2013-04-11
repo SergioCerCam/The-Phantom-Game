@@ -11,6 +11,8 @@ pygame.init()
 
 clock = pygame.time.Clock()
 
+pygame.mixer.music.load("menu.mp3")
+
 #---Creo la ventana donde se vera el juego:
 
 Ancho = 700
@@ -69,35 +71,65 @@ def menu(screen, select):
         screen.blit(salirse, salirsex)
         screen.blit(creditos, creditosx)
 
+
+def volver(screen, select):
+
+        if select == 1:
+            volver, volverx = texto ("Volver", Ancho/1-115, Alto/1-20, (255, 0, 0))
+
+        screen.blit(volver, volverx)
+
+
 #---Funcion para crear la siguiente pantalla cuando el usuario presione "Empezar Partida":
+
 
 def juego_nuevo(screen):
 
-    fondo = load_image("juego_nuevo.jpg");
- 
+    fondo = load_image('juego_nuevo.jpg'); 
+    screen = pygame.display.set_mode((Ancho, Alto))
+    pygame.display.set_caption("Snake Eater")
+
+    select = 1
+    
     while True:
         
         keys = pygame.key.get_pressed()
         salir(keys)
-        
+
+        if keys[K_SPACE]:
+            if select == 1:
+                main()
         screen.blit(fondo, (0,0))
+        volver(screen, select)
         pygame.display.flip()
         pygame.time.delay(100)
+        clock.tick(8)
+       
         
 #---Pantalla de creditos:
 
 def creditos(screen):
 
-    fondo = load_image("creditos.jpg");
+    fondo = load_image('creditos.jpg'); 
+    screen = pygame.display.set_mode((Ancho, Alto))
+    pygame.display.set_caption("Snake Eater")
 
+    select = 1
+    
     while True:
         
         keys = pygame.key.get_pressed()
         salir(keys)
 
+        if keys[K_SPACE]:
+            if select == 1:
+                main()
+
         screen.blit(fondo, (0,0))
+        volver(screen, select)
         pygame.display.flip()
         pygame.time.delay(100)
+        clock.tick(8)
 
 #---Funcion principal
 def main():
@@ -105,7 +137,7 @@ def main():
     screen = pygame.display.set_mode((Ancho, Alto))
     pygame.display.set_caption('Snake Eater')
     background_image = load_image('fondoreal.jpg')   
-    pygame.mixer.music.load("menu.mp3")
+    
     pygame.mixer.music.play(-1)
 
 #---Especifico que al presionar la tecla enter salga del juego y que entre en los distintos apartados del menu:
