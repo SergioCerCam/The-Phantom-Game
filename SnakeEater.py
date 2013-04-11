@@ -12,6 +12,7 @@ pygame.init()
 clock = pygame.time.Clock()
 
 pygame.mixer.music.load("menu.mp3")
+pygame.mixer.music.play(-1)
 
 #---Creo la ventana donde se vera el juego:
 
@@ -31,6 +32,7 @@ def load_image(filename, transparent=False):
 
 
 #---Funcion para el texto de la pantalla
+
 def texto(texto, posx, posy, color=(255,255,255), tam=30):
     fuente = pygame.font.Font("METAG.ttf", tam)
     salida = pygame.font.Font.render(fuente, texto, 1, color)
@@ -72,16 +74,49 @@ def menu(screen, select):
         screen.blit(creditos, creditosx)
 
 
+#---Volver al menu principal:
+
 def volver(screen, select):
 
-        if select == 1:
+        if select == 4:
             volver, volverx = texto ("Volver", Ancho/1-115, Alto/1-20, (255, 0, 0))
 
         screen.blit(volver, volverx)
 
+#---Niveles de dificultad:
+
+def dificultad (screen, select):
+
+        if select == 1:
+            level1, level1X = texto("Nivel Liquid", Ancho/1-530, Alto/1-160, (255, 0, 0))
+            level2, level2X = texto("Nivel Solid", Ancho/1-548, Alto/1-120, (0, 0, 0))
+            level3, level3X = texto("Nivel Big Boss", Ancho/1-528, Alto/1-80, (0, 0, 0))
+            volver, volverX = texto("Volver", Ancho/1-120, Alto/1-20, (0, 0, 0))
+
+        if select == 2:
+            level1, level1X = texto("Nivel Liquid", Ancho/1-530, Alto/1-160, (0, 0, 0))
+            level2, level2X = texto("Nivel Solid", Ancho/1-548, Alto/1-120, (255, 0, 0))
+            level3, level3X = texto("Nivel Big Boss", Ancho/1-528, Alto/1-80, (0, 0, 0))
+            volver, volverX = texto("Volver", Ancho/1-120, Alto/1-20, (0, 0, 0))
+
+        if select == 3:
+            level1, level1X = texto("Nivel Liquid", Ancho/1-530, Alto/1-160, (0, 0, 0))
+            level2, level2X = texto("Nivel Solid", Ancho/1-548, Alto/1-120, (0, 0, 0))
+            level3, level3X = texto("Nivel Big Boss", Ancho/1-528, Alto/1-80, (255, 0, 0))
+            volver, volverX = texto("Volver", Ancho/1-120, Alto/1-20, (0,  0, 0))
+        
+        if select == 4:
+            level1, level1X = texto("Nivel Liquid", Ancho/1-530, Alto/1-160, (0, 0, 0))
+            level2, level2X = texto("Nivel Solid", Ancho/1-548, Alto/1-120, (0, 0, 0))
+            level3, level3X = texto("Nivel Big Boss", Ancho/1-528, Alto/1-80, (0, 0, 0))
+            volver, volverX = texto("Volver", Ancho/1-120, Alto/1-20, (255, 0, 0))
+
+        screen.blit(level1, level1X)
+        screen.blit(level2, level2X)
+        screen.blit(level3, level3X)
+        screen.blit(volver, volverX)
 
 #---Funcion para crear la siguiente pantalla cuando el usuario presione "Empezar Partida":
-
 
 def juego_nuevo(screen):
 
@@ -96,11 +131,18 @@ def juego_nuevo(screen):
         keys = pygame.key.get_pressed()
         salir(keys)
 
+        if keys[K_UP] and select != 1:
+            select -=1
+
+	elif keys[K_DOWN] and select != 4:
+	    select +=1
+
         if keys[K_SPACE]:
-            if select == 1:
+            if select == 4:
                 main()
+
         screen.blit(fondo, (0,0))
-        volver(screen, select)
+        dificultad(screen, select)
         pygame.display.flip()
         pygame.time.delay(100)
         clock.tick(8)
@@ -121,6 +163,7 @@ def creditos(screen):
         keys = pygame.key.get_pressed()
         salir(keys)
 
+        
         if keys[K_SPACE]:
             if select == 1:
                 main()
@@ -132,13 +175,13 @@ def creditos(screen):
         clock.tick(8)
 
 #---Funcion principal
+
 def main():
     
     screen = pygame.display.set_mode((Ancho, Alto))
     pygame.display.set_caption('Snake Eater')
-    background_image = load_image('fondoreal.jpg')   
-    
-    pygame.mixer.music.play(-1)
+    background_image = load_image('fondoreal.jpg')       
+   
 
 #---Especifico que al presionar la tecla enter salga del juego y que entre en los distintos apartados del menu:
     
