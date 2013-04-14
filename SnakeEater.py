@@ -74,12 +74,12 @@ def menu(screen, select):
         screen.blit(creditos, creditosx)
 
 
-#---Volver al menu principal:
+#---Volver al menu principal desde "creditos":
 
 def volver(screen, select):
 
         if select == 4:
-            volver, volverx = texto ("Volver", Ancho/1-115, Alto/1-20, (255, 0, 0))
+            volver, volverx = texto ("Volver", Ancho/1-115, Alto/1-20, (51, 51, 204))
 
         screen.blit(volver, volverx)
 
@@ -88,14 +88,14 @@ def volver(screen, select):
 def dificultad (screen, select):
 
         if select == 1:
-            level1, level1X = texto("Facil Liquid", Ancho/1-548, Alto/1-160, (255, 0, 0))
+            level1, level1X = texto("Facil Liquid", Ancho/1-548, Alto/1-160, (153, 255, 0))
             level2, level2X = texto("Normal Solid", Ancho/1-548, Alto/1-120, (0, 0, 0))
             level3, level3X = texto("Dificil Big Boss", Ancho/1-548, Alto/1-80, (0, 0, 0))
             volver, volverX = texto("Volver", Ancho/1-120, Alto/1-20, (0, 0, 0))
 
         if select == 2:
             level1, level1X = texto("Facil Liquid", Ancho/1-548, Alto/1-160, (0, 0, 0))
-            level2, level2X = texto("Normal Solid", Ancho/1-548, Alto/1-120, (255, 0, 0))
+            level2, level2X = texto("Normal Solid", Ancho/1-548, Alto/1-120, (255, 153, 0))
             level3, level3X = texto("Dificil Big Boss", Ancho/1-548, Alto/1-80, (0, 0, 0))
             volver, volverX = texto("Volver", Ancho/1-120, Alto/1-20, (0, 0, 0))
 
@@ -109,7 +109,7 @@ def dificultad (screen, select):
             level1, level1X = texto("Facil Liquid", Ancho/1-548, Alto/1-160, (0, 0, 0))
             level2, level2X = texto("Normal Solid", Ancho/1-548, Alto/1-120, (0, 0, 0))
             level3, level3X = texto("Dificil Big Boss", Ancho/1-548, Alto/1-80, (0, 0, 0))
-            volver, volverX = texto("Volver", Ancho/1-120, Alto/1-20, (255, 0, 0))
+            volver, volverX = texto("Volver", Ancho/1-120, Alto/1-20, (51, 51, 204))
 
         screen.blit(level1, level1X)
         screen.blit(level2, level2X)
@@ -161,9 +161,7 @@ def creditos(screen):
     while True:
         
         keys = pygame.key.get_pressed()
-        salir(keys)
-
-      
+        salir(keys)   
 
         if keys[K_SPACE]:
             if select == 4:
