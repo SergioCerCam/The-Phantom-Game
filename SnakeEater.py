@@ -116,6 +116,16 @@ def dificultad (screen, select):
         screen.blit(level3, level3X)
         screen.blit(volver, volverX)
 
+#---Creacion del escenario del juego:
+
+class mapa(pygame.sprite.Sprite):
+    
+    def __init__(self, objeto):
+        pygame.sprite.Sprite.__init__(self)
+    
+
+
+
 #---Funcion para crear la siguiente pantalla cuando el usuario presione "Empezar Partida":
 
 def juego_nuevo(screen):
