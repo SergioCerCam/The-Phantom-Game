@@ -138,7 +138,7 @@ class mapa(pygame.sprite.Sprite):
                     screen.blit(self.muro, (self.rect_muro.w*col, self.rect_muro.h*fil))
 
 def lista(cadena):
-    lista []
+    lista = []
     for i in range(len(cadena)):
         if cadena[i] == "#":
             lista.append(1)
