@@ -120,9 +120,39 @@ def dificultad (screen, select):
 
 class mapa(pygame.sprite.Sprite):
     
-    def __init__(self, objeto):
+    def __init__(self, archivotxt):
         pygame.sprite.Sprite.__init__(self)
     
+        self.muro = load_image("img_escenario/muro.png")
+        self.rect_muro = self.muro.get_rect()
+
+        self.mapa = importar_mapa(archivotxt)
+        self.fila = (self.mapa)
+        self.colu = (self.mapa)
+
+#---Creando los bordes del escenario mediante fil que se multiplicaria por w(weight) para el ancho y col por h(height) para el alto.
+    def crear_mapa(self, screen):
+        for fil in range(self.fila):
+            for col in range(self.colu):
+                if self.mapa[fil][col] == 1:
+                    screen.blit(self.muro, (self.rect_muro.w*col, self.rect_muro.h*fil))
+
+def lista(cadena):
+    lista []
+    for i in range(len(cadena)):
+        if cadena[i] == "#":
+            lista.append(1)
+
+    return lista
+
+
+def importar_mapa(archivotxt):
+    mapa = open(archivo, "r")
+    for i in range(len(mapa)):
+        mapa[i] = lista(mapa[i])
+
+    return mapa
+
 
 
 
