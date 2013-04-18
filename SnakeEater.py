@@ -123,7 +123,7 @@ class mapa(pygame.sprite.Sprite):
     def __init__(self, archivotxt):
         pygame.sprite.Sprite.__init__(self)
     
-        self.muro = load_image("img_escenario/muro.png")
+        self.muro = load_image("muro.png")
         self.rect_muro = self.muro.get_rect()
 
         self.mapa = importar_mapa(archivotxt)
@@ -147,7 +147,7 @@ def lista(cadena):
 
 
 def importar_mapa(archivotxt):
-    mapa = open(archivo, "r")
+    mapa = open(archivotxt, "r")
     for i in range(len(mapa)):
         mapa[i] = lista(mapa[i])
 
@@ -180,6 +180,8 @@ def juego_nuevo(screen):
         if keys[K_SPACE]:
             if select == 4:
                 main()
+            elif select == 1:
+                facil_liquid(screen)
 
         screen.blit(fondo, (0,0))
         dificultad(screen, select)
@@ -194,6 +196,7 @@ def facil_liquid (screen):
     fondo = load_image('fondoliquid.jpg');
     pygame.display.set_caption("Snake Eater")
     clock = pygame.time.Clock()
+    importar_mapa = mapa("mapa.txt")
     
 
     while True:
@@ -202,7 +205,7 @@ def facil_liquid (screen):
         salir(keys)
 
         screen.blit(fondo, (0,0))
-      
+        mapa.crear_mapa(screen)
         pygame.display.flip()
         pygame.time.delay(100)
  
