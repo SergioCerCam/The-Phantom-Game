@@ -187,7 +187,26 @@ def juego_nuevo(screen):
         pygame.time.delay(100)
         clock.tick(8)
        
-        
+#---Nivel Facil del juego:        
+
+def facil_liquid (screen):
+    
+    fondo = load_image('fondoliquid.jpg');
+    pygame.display.set_caption("Snake Eater")
+    clock = pygame.time.Clock()
+    
+
+    while True:
+        time = clock.tick(100)
+        keys = pygame.key.get_pressed()
+        salir(keys)
+
+        screen.blit(fondo, (0,0))
+      
+        pygame.display.flip()
+        pygame.time.delay(100)
+ 
+
 #---Pantalla de creditos:
 
 def creditos(screen):
