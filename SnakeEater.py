@@ -185,6 +185,10 @@ def juego_nuevo(screen):
                 main()
             elif select == 1:
                 facil_liquid(screen)
+            elif select == 2:
+                normal_solid(screen)
+            elif select == 3:
+                dificil_bigboss(screen)
 
         screen.blit(fondo, (0,0))
         dificultad(screen, select)
@@ -212,6 +216,49 @@ def facil_liquid (screen):
         pygame.display.flip()
         pygame.time.delay(100)
  
+
+#---Nivel Facil del juego:
+
+def normal_solid (screen):
+    
+    fondo = load_image('fondosolid.jpg');
+    pygame.display.set_caption("Snake Eater")
+    clock = pygame.time.Clock()
+    importar_mapa = mapa("mapa.txt")
+    
+
+    while True:
+        time = clock.tick(100)
+        keys = pygame.key.get_pressed()
+        salir(keys)
+
+        screen.blit(fondo, (0,0))
+        importar_mapa.crear_mapa(screen)
+        pygame.display.flip()
+        pygame.time.delay(100)
+
+
+#---Nivel Facil del juego:
+
+def dificil_bigboss (screen):
+    
+    fondo = load_image('fondobigboss.jpg');
+    pygame.display.set_caption("Snake Eater")
+    clock = pygame.time.Clock()
+    importar_mapa = mapa("mapa.txt")
+    
+
+    while True:
+        time = clock.tick(100)
+        keys = pygame.key.get_pressed()
+        salir(keys)
+
+        screen.blit(fondo, (0,0))
+        importar_mapa.crear_mapa(screen)
+        pygame.display.flip()
+        pygame.time.delay(100)
+ 
+
 
 #---Pantalla de creditos:
 
