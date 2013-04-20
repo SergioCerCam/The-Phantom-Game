@@ -127,8 +127,8 @@ class mapa(pygame.sprite.Sprite):
         self.rect_muro = self.muro.get_rect()
 
         self.mapa = importar_mapa(archivotxt)
-        self.fila = (self.mapa)
-        self.colu = (self.mapa)
+        self.fila = len(self.mapa)
+        self.colu = len(self.mapa)
 
 #---Creando los bordes del escenario mediante fil que se multiplicaria por w(weight) para el ancho y col por h(height) para el alto.
     def crear_mapa(self, screen):
