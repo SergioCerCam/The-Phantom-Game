@@ -140,6 +140,8 @@ class mapa(pygame.sprite.Sprite):
 def lista(cadena):
     lista = []
     for i in range(len(cadena)):
+	if cadena[i] == ".":
+	    lista.append(0)
         if cadena[i] == "#":
             lista.append(1)
 
@@ -148,6 +150,7 @@ def lista(cadena):
 
 def importar_mapa(archivotxt):
     mapa = open(archivotxt, "r")
+    mapa = mapa.readlines()
     for i in range(len(mapa)):
         mapa[i] = lista(mapa[i])
 
@@ -205,7 +208,7 @@ def facil_liquid (screen):
         salir(keys)
 
         screen.blit(fondo, (0,0))
-        mapa.crear_mapa(screen)
+        importar_mapa.crear_mapa(screen)
         pygame.display.flip()
         pygame.time.delay(100)
  
