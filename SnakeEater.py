@@ -19,7 +19,8 @@ pygame.mixer.music.play(-1)
 Ancho = 700
 Alto = 429
 
-#---Funcion fondo pantalla
+#---Funcion fondo pantalla:
+
 def load_image(filename, transparent=False):
     try: image = pygame.image.load(filename)
     except pygame.error, message:
@@ -30,11 +31,20 @@ def load_image(filename, transparent=False):
         image.set_colorkey(color, RLEACCEL)
     return image
 
-
-#---Funcion para el texto de la pantalla
+#---Funcion para el texto de la pantalla principal y niveles:
 
 def texto(texto, posx, posy, color=(255,255,255), tam=30):
     fuente = pygame.font.Font("METAG.ttf", tam)
+    salida = pygame.font.Font.render(fuente, texto, 1, color)
+    salida_rect = salida.get_rect()
+    salida_rect.centerx = posx
+    salida_rect.centery = posy
+    return salida, salida_rect
+
+#---Texto para la pantalla creditos:
+
+def palabras(texto, posx, posy, color=(255,255,255), tam=30):
+    fuente = pygame.font.Font("verdana.ttf", tam)
     salida = pygame.font.Font.render(fuente, texto, 1, color)
     salida_rect = salida.get_rect()
     salida_rect.centerx = posx
@@ -50,7 +60,7 @@ def salir(keys):
         if keys[K_ESCAPE]:
             sys.exit(0)
 
-#---Funcion para crear el menu principal del juego
+#---Funcion para crear el menu principal del juego:
 
 def menu(screen, select):
 
@@ -130,7 +140,8 @@ class mapa(pygame.sprite.Sprite):
         self.fila = len(self.mapa)
         self.colu = len(self.mapa)
 
-#---Creando los bordes del escenario mediante fil que se multiplicaria por w(weight) para el ancho y col por h(height) para el alto.
+#---Creando los bordes del escenario mediante fil que se multiplicaria por w(weight) para el ancho y col por h(height) para el alto:
+
     def crear_mapa(self, screen):
         for fil in range(self.fila):
             for col in range(self.colu):
@@ -155,9 +166,6 @@ def importar_mapa(archivotxt):
         mapa[i] = lista(mapa[i])
 
     return mapa
-
-
-
 
 #---Funcion para crear la siguiente pantalla cuando el usuario presione "Empezar Partida":
 
@@ -216,8 +224,7 @@ def facil_liquid (screen):
         pygame.display.flip()
         pygame.time.delay(100)
  
-
-#---Nivel Facil del juego:
+#---Nivel Normal del juego:
 
 def normal_solid (screen):
     
@@ -237,8 +244,7 @@ def normal_solid (screen):
         pygame.display.flip()
         pygame.time.delay(100)
 
-
-#---Nivel Facil del juego:
+#---Nivel Dificil del juego:
 
 def dificil_bigboss (screen):
     
@@ -255,7 +261,7 @@ def dificil_bigboss (screen):
 
         screen.blit(fondo, (0,0))
         importar_mapa.crear_mapa(screen)
-        pygame.display.flip()
+        pygame.display.flip()       
         pygame.time.delay(100)
  
 
@@ -267,25 +273,41 @@ def creditos(screen):
     fondo = load_image('creditos.jpg'); 
     screen = pygame.display.set_mode((Ancho, Alto))
     pygame.display.set_caption("Snake Eater")
-
+    
     select = 4
     
     while True:
         
         keys = pygame.key.get_pressed()
-        salir(keys)   
+        salir(keys)  
+ 
+        tex_img0, tex_rec0 = palabras("Este juego desarrollado", 160, 230, (255, 0, 0), 22)
+        tex_img1, tex_rec1 = palabras("en Python, ha sido", 134, 255, (255, 0, 0), 22)
+        tex_img2, tex_rec2 = palabras("creado por Sergio CeCampoy", 190, 280, (255, 0, 0), 22)
+        tex_img3, tex_rec3 = palabras("y las imagenes y canciones", 181, 305, (255, 0, 0), 22)
+        tex_img4, tex_rec4 = palabras("utilizadas pertenezen", 148, 335, (255, 0, 0), 22)
+        tex_img5, tex_rec5 = palabras("a la saga de videojuegos", 168, 360, (255, 0, 0), 22)
+        tex_img6, tex_rec6 = palabras("Metal Gear Solid", 133, 390, (255, 0, 0), 25)  
+
 
         if keys[K_SPACE]:
             if select == 4:
                 main()
 
         screen.blit(fondo, (0,0))
+	screen.blit(tex_img0, tex_rec0)
+	screen.blit(tex_img1, tex_rec1)
+	screen.blit(tex_img2, tex_rec2)
+	screen.blit(tex_img3, tex_rec3)
+	screen.blit(tex_img4, tex_rec4)
+	screen.blit(tex_img5, tex_rec5)
+	screen.blit(tex_img6, tex_rec6)
         volver(screen, select)
         pygame.display.flip()
         pygame.time.delay(100)
         clock.tick(8)
 
-#---Funcion principal
+#---Funcion principal:
 
 def main():
     
@@ -293,7 +315,6 @@ def main():
     pygame.display.set_caption('Snake Eater')
     background_image = load_image('fondoreal.jpg')       
    
-
 #---Especifico que al presionar la tecla enter salga del juego y que entre en los distintos apartados del menu:
     
     select = 1
