@@ -2,7 +2,7 @@
 
 #-Importo las librerias:
 
-import pygame, sys
+import pygame, sys, random
 from pygame.locals import *
 
 #---Inicio pygame:
@@ -135,18 +135,35 @@ class mapa(pygame.sprite.Sprite):
     
         self.muro = load_image("muro.png")
         self.rect_muro = self.muro.get_rect()
-
+		
+	self.comida = load_image("comida1.png", True)
+	self.rect_comida = self.comida.get_rect()
+		
         self.mapa = importar_mapa(archivotxt)
         self.fila = len(self.mapa)
         self.colu = len(self.mapa)
+	self.alimento()
 
 #---Creando los bordes del escenario mediante fil que se multiplicaria por w(weight) para el ancho y col por h(height) para el alto:
 
     def crear_mapa(self, screen):
         for fil in range(self.fila):
             for col in range(self.colu):
-                if self.mapa[fil][col] == 1:
-                    screen.blit(self.muro, (self.rect_muro.w*col, self.rect_muro.h*fil))
+                  if self.mapa[fil][col] == 1:
+                        screen.blit(self.muro, (self.rect_muro.w*col, self.rect_muro.h*fil))
+		  if self.mapa[fil][col] == 3:
+		        screen.blit(self.comida, (self.rect_comida.w*col, self.rect_comida.h*fil))
+
+					
+    def alimento(self):
+	    a = 1
+	    while a:
+		    fil = random.randint(1, self.fila-1)
+		    col = random.randint(1, self.colu-1)
+	            if self.mapa[fil][col] == 0:
+			    self.mapa[fil][col] = 3
+			    a = 0
+		
 
 def lista(cadena):
     lista = []
