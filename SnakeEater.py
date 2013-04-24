@@ -17,7 +17,7 @@ pygame.mixer.music.play(-1)
 #---Creo la ventana donde se vera el juego:
 
 Ancho = 700
-Alto = 429
+Alto = 433
 
 #---Funcion fondo pantalla:
 
