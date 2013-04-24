@@ -141,7 +141,7 @@ class mapa(pygame.sprite.Sprite):
 		
         self.mapa = importar_mapa(archivotxt)
         self.fila = len(self.mapa)
-        self.colu = len(self.mapa)
+        self.colu = len(self.mapa[0])
 	self.alimento()
 
 #---Creando los bordes del escenario mediante fil que se multiplicaria por w(weight) para el ancho y col por h(height) para el alto:
@@ -224,14 +224,21 @@ def juego_nuevo(screen):
 #---Nivel Facil del juego:        
 
 def facil_liquid (screen):
-    
+
+    pygame.mixer.music.load("start.mp3")
+    pygame.mixer.music.play(1)
+    previo = load_image('previo.jpg');
+    screen.blit(previo, (0,0))	
+    pygame.display.flip()
+    pygame.time.delay(5200)   
+
     fondo = load_image('fondoliquid.jpg');
     pygame.display.set_caption("Snake Eater")
     clock = pygame.time.Clock()
     importar_mapa = mapa("mapa.txt")
     
-
     while True:
+
         time = clock.tick(100)
         keys = pygame.key.get_pressed()
         salir(keys)
@@ -244,6 +251,13 @@ def facil_liquid (screen):
 #---Nivel Normal del juego:
 
 def normal_solid (screen):
+
+    pygame.mixer.music.load("start.mp3")
+    pygame.mixer.music.play(1)
+    previo = load_image('previo.jpg');
+    screen.blit(previo, (0,0))	
+    pygame.display.flip()
+    pygame.time.delay(5200)
     
     fondo = load_image('fondosolid.jpg');
     pygame.display.set_caption("Snake Eater")
@@ -264,7 +278,14 @@ def normal_solid (screen):
 #---Nivel Dificil del juego:
 
 def dificil_bigboss (screen):
-    
+  
+    pygame.mixer.music.load("start.mp3")
+    pygame.mixer.music.play(1)
+    previo = load_image('previo.jpg');
+    screen.blit(previo, (0,0))	
+    pygame.display.flip()
+    pygame.time.delay(5200)
+  
     fondo = load_image('fondobigboss.jpg');
     pygame.display.set_caption("Snake Eater")
     clock = pygame.time.Clock()
@@ -281,8 +302,6 @@ def dificil_bigboss (screen):
         pygame.display.flip()       
         pygame.time.delay(100)
  
-
-
 #---Pantalla de creditos:
 
 def creditos(screen):
