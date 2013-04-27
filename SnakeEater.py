@@ -165,6 +165,23 @@ class mapa(pygame.sprite.Sprite):
 			    a = 0
 		
 
+class Snake:
+	def __init__(self, mapa):
+		self.snake = []
+		for f in range(mapa.fila):
+		        for c in range(mapa.colu):
+
+
+
+	def mover(self, mapa, keys):
+	        if keys [K_UP]:
+
+                elif keys [K_DOWN]:
+
+		elif keys [K_LEFT]:
+
+		elif keys [K_RIGHT]:
+
 def lista(cadena):
     lista = []
     for i in range(len(cadena)):
@@ -175,10 +192,10 @@ def lista(cadena):
 
     return lista
 
-
 def importar_mapa(archivotxt):
     mapa = open(archivotxt, "r")
     mapa = mapa.readlines()
+
     for i in range(len(mapa)):
         mapa[i] = lista(mapa[i])
 
