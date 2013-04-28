@@ -139,6 +139,9 @@ class mapa(pygame.sprite.Sprite):
 	self.comida = load_image("comida1.png", True)
 	self.rect_comida = self.comida.get_rect()
 		
+        self.serpiente = load_image("serpiente.png")
+        self.rect_snake = self.snake.get_rect()
+		
         self.mapa = importar_mapa(archivotxt)
         self.fila = len(self.mapa)
         self.colu = len(self.mapa[0])
@@ -151,6 +154,8 @@ class mapa(pygame.sprite.Sprite):
             for col in range(self.colu):
                   if self.mapa[fil][col] == 1:
                         screen.blit(self.muro, (self.rect_muro.w*col, self.rect_muro.h*fil))
+                  if self.mapa[fil][col] == 2:
+                        screen.blit(self.serpiente, (self.rect_snake.w*col, self.rect_snake.h*fil))
 		  if self.mapa[fil][col] == 3:
 		        screen.blit(self.comida, (self.rect_comida.w*col, self.rect_comida.h*fil))
 
@@ -164,26 +169,43 @@ class mapa(pygame.sprite.Sprite):
 			    self.mapa[fil][col] = 3
 			    a = 0
 		
+#---Creando la serpiente:
 
 class Snake:
 	def __init__(self, mapa):
 		self.snake = []
-		for f in range(mapa.fila):
-		        for c in range(mapa.colu):
+		for fil in range(mapa.fila):
+		        for col in range(mapa.colu):
+                            if mapa.mapa[fil][col] == 2:
+                                for n in range(4):
+                                    self.serpiente.append([fil, col])
 
+                                break
+                self.ultimo = 1
 
 
 	def mover(self, mapa, keys):
 	        if keys [K_UP]:
+                    if self.ultimo != 3:
 
                 elif keys [K_DOWN]:
+                    if self.ultimo != 4:
 
 		elif keys [K_LEFT]:
+                    if self.ultimo != 1:
 
 		elif keys [K_RIGHT]:
+                    if self.ultimo != 2:
+
+
+def comienzo(lista, elemento):
+    nueva = [elemento]
+    nueva += lista
+    return nueva
 
 def lista(cadena):
     lista = []
+
     for i in range(len(cadena)):
 	if cadena[i] == ".":
 	    lista.append(0)
