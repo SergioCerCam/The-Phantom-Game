@@ -150,14 +150,14 @@ class mapa(pygame.sprite.Sprite):
 #---Creando los bordes del escenario mediante fil que se multiplicaria por w(weight) para el ancho y col por h(height) para el alto:
 
     def crear_mapa(self, screen):
-        for fil in range(self.fila):
-            for col in range(self.colu):
-                  if self.mapa[fil][col] == 1:
-                        screen.blit(self.muro, (self.rect_muro.w*col, self.rect_muro.h*fil))
-                  if self.mapa[fil][col] == 2:
-                        screen.blit(self.serpiente, (self.rect_snake.w*col, self.rect_snake.h*fil))
-		  if self.mapa[fil][col] == 3:
-		        screen.blit(self.comida, (self.rect_comida.w*col, self.rect_comida.h*fil))
+        for fila in range(self.fila):
+            for columna in range(self.colu):
+                  if self.mapa[fila][columna] == 1:
+                        screen.blit(self.muro, (self.rect_muro.w*columna, self.rect_muro.h*fila))
+                  if self.mapa[fila][columna] == 2:
+                        screen.blit(self.serpiente, (self.rect_snake.w*columna, self.rect_snake.h*fila))
+		  if self.mapa[fila][columna] == 3:
+		        screen.blit(self.comida, (self.rect_comida.w*columna, self.rect_comida.h*fila))
 
 					
     def alimento(self):
@@ -174,14 +174,25 @@ class mapa(pygame.sprite.Sprite):
 class Snake:
 	def __init__(self, mapa):
 		self.snake = []
-		for fil in range(mapa.fila):
-		        for col in range(mapa.colu):
-                            if mapa.mapa[fil][col] == 2:
+		for t in range(mapa.fila):
+		        for s in range(mapa.colu):
+                            if mapa.mapa[s][t] == 2:
                                 for n in range(4):
-                                    self.serpiente.append([fil, col])
+                                    self.serpiente.append([t, s])
 
                                 break
                 self.ultimo = 1
+
+        def refresco(self, mapa):
+            for x in range(mapa.fila):
+                for y in range(mapa.colu):
+                    if mapa.mapa[x][y] == 2:
+                        mapa.mapa[x][y] = 0
+
+            mapa.mapa[self.snake[0][0]][self.snake[0][1]] = 5
+            for i in range(1, len(self.snake)):
+                mapa.mapa[self.snake[i][0]][self.snake[i][1]] = 2
+
 
 
 	def mover(self, mapa, keys):
