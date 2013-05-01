@@ -128,112 +128,125 @@ def dificultad (screen, select):
 
 #---Creacion del escenario del juego:
 
-class mapa(pygame.sprite.Sprite):
-    
-    def __init__(self, archivotxt):
-        pygame.sprite.Sprite.__init__(self)
-    
-        self.muro = load_image("muro.png")
-        self.rect_muro = self.muro.get_rect()
+class Mapa(pygame.sprite.Sprite):
+	def __init__(self, archivotxt):
+		pygame.sprite.Sprite.__init__(self)
 		
-	self.comida = load_image("comida1.png", True)
-	self.rect_comida = self.comida.get_rect()
+		self.bloque = load_image("muro.png")
+		self.rect_bloque = self.bloque.get_rect()
 		
-        self.serpiente = load_image("serpiente.png")
-        self.rect_snake = self.snake.get_rect()
+		self.snake = load_image("serpiente.png")
+		self.rect_snake = self.snake.get_rect()
 		
-        self.mapa = importar_mapa(archivotxt)
-        self.fila = len(self.mapa)
-        self.colu = len(self.mapa[0])
-	self.alimento()
-
-#---Creando los bordes del escenario mediante fil que se multiplicaria por w(weight) para el ancho y col por h(height) para el alto:
-
-    def crear_mapa(self, screen):
-        for fila in range(self.fila):
-            for columna in range(self.colu):
-                  if self.mapa[fila][columna] == 1:
-                        screen.blit(self.muro, (self.rect_muro.w*columna, self.rect_muro.h*fila))
-                  if self.mapa[fila][columna] == 2:
-                        screen.blit(self.serpiente, (self.rect_snake.w*columna, self.rect_snake.h*fila))
-		  if self.mapa[fila][columna] == 3:
-		        screen.blit(self.comida, (self.rect_comida.w*columna, self.rect_comida.h*fila))
-
+		self.comida = load_image("comida1.png", True)
+		self.rect_comida = self.comida.get_rect()
+		
+		self.mapa = importar_mapa(archivotxt)
+		self.fila = len(self.mapa)
+		self.colu = len(self.mapa[0])
+		self.alimento()
+	
+	def crear_mapa(self, screen):
+		for fila in range(self.fila):
+			for columna in range(self.colu):
+				if self.mapa[fila][columna] == 1:
+					screen.blit(self.bloque, (self.rect_bloque.w*columna, self.rect_bloque.h*fila))
+				if self.mapa[fila][columna] == 2 or self.mapa[fila][columna] == 5:
+					screen.blit(self.snake, (self.rect_snake.w*columna, self.rect_snake.h*fila))
+				if self.mapa[fila][columna] == 3:
+					screen.blit(self.comida, (self.rect_comida.w*columna, self.rect_comida.h*fila))
 					
-    def alimento(self):
-	    a = 1
-	    while a:
-		    fil = random.randint(1, self.fila-1)
-		    col = random.randint(1, self.colu-1)
-	            if self.mapa[fil][col] == 0:
-			    self.mapa[fil][col] = 3
-			    a = 0
-		
-#---Creando la serpiente:
-
+	def alimento(self):
+		a = 1
+		while a:
+			fil = random.randint(1, self.fila)
+			col = random.randint(1, self.colu)
+			if self.mapa[fil][col] == 0:
+				self.mapa[fil][col] = 3
+				a = 0
 class Snake:
-	def __init__(self, mapa):
+	def __init__(self, importar_mapa):
 		self.snake = []
-		for t in range(mapa.fila):
-		        for s in range(mapa.colu):
-                            if mapa.mapa[s][t] == 2:
-                                for n in range(4):
-                                    self.serpiente.append([t, s])
-
-                                break
-                self.ultimo = 1
-
-        def refresco(self, mapa):
-            for x in range(mapa.fila):
-                for y in range(mapa.colu):
-                    if mapa.mapa[x][y] == 2:
-                        mapa.mapa[x][y] = 0
-
-            mapa.mapa[self.snake[0][0]][self.snake[0][1]] = 5
-            for i in range(1, len(self.snake)):
-                mapa.mapa[self.snake[i][0]][self.snake[i][1]] = 2
-
-
-
+		for t in range(importar_mapa.fila):
+			for s in range(importar_mapa.colu):
+				if importar_mapa.mapa[t][s] == 2:
+					for n in range(4):
+						self.snake.append([t, s])
+					break
+		self.ultimo = 1
+				
+	def actualizar(self, mapa):
+		for x in range(mapa.fila):
+			for y in range(mapa.colu):
+				if mapa.mapa[x][y] == 2:
+					mapa.mapa[x][y] = 0
+		
+		mapa.mapa[self.snake[0][0]][self.snake[0][1]] = 5
+		for i in range(1, len(self.snake)):
+			mapa.mapa[self.snake[i][0]][self.snake[i][1]] = 2
+						
 	def mover(self, mapa, keys):
-	        if keys [K_UP]:
-                    if self.ultimo != 3:
-
-                elif keys [K_DOWN]:
-                    if self.ultimo != 4:
-
-		elif keys [K_LEFT]:
-                    if self.ultimo != 1:
-
-		elif keys [K_RIGHT]:
-                    if self.ultimo != 2:
+		if keys[K_UP]:
+			if self.ultimo != 3:
+				nuevo = [self.snake[1][0]-1, self.snake[0][1]]
+				self.snake = comienzo(self.snake, nuevo)
+				if mapa.mapa[nuevo[0]][nuevo[1]] != 3:
+					self.snake.pop()
+				self.ultimo = 3
+		elif keys[K_DOWN]:
+			if self.ultimo != 4:
+				nuevo = [self.snake[0][0]+1, self.snake[0][1]]
+				self.snake = comienzo(self.snake, nuevo)
+				if mapa.mapa[nuevo[0]][nuevo[1]] != 3:
+					self.snake.pop()
+				self.ultimo = 4
+		elif keys[K_LEFT]:
+			if self.ultimo != 1:
+				nuevo = [self.snake[1][0]-1, self.snake[0][1]-1]
+				self.snake = comienzo(self.snake, nuevo)
+				if mapa.mapa[nuevo[0]][nuevo[1]] != 3:
+					self.snake.pop()
+				self.ultimo = 1
+		elif keys[K_RIGHT]:
+			if self.ultimo != 2:
+				nuevo = [self.snake[0][0]+1, self.snake[0][1]+1]
+				self.snake = comienzo(self.snake, nuevo)
+				if mapa.mapa[nuevo[0]][nuevo[1]] != 3:
+					self.snake.pop()
+				self.ultimo = 2
+				
+		if mapa.mapa[self.snake[0][0]][self.snake[0][1]] == 3:
+			mapa.alimento()
+			return 0
+		
 
 
 def comienzo(lista, elemento):
-    nueva = [elemento]
-    nueva += lista
-    return nueva
+	nueva = [elemento]
+	nueva += lista
+	return nueva
+	
+	
+def listarCadena(cadena):
+	lista = []
+	for i in range(len(cadena)):
+		if cadena[i] == ".":
+			lista.append(0)
+		if cadena[i] == "#":
+			lista.append(1)
+		if cadena[i] == "*":
+			lista.append(2)
+	return lista
 
-def lista(cadena):
-    lista = []
-
-    for i in range(len(cadena)):
-	if cadena[i] == ".":
-	    lista.append(0)
-        if cadena[i] == "#":
-            lista.append(1)
-
-    return lista
 
 def importar_mapa(archivotxt):
-    mapa = open(archivotxt, "r")
-    mapa = mapa.readlines()
+	mapa = open(archivotxt, "r")
+	mapa = mapa.readlines()
 
-    for i in range(len(mapa)):
-        mapa[i] = lista(mapa[i])
-
-    return mapa
-
+	for i in range(len(mapa)):
+		mapa[i] = listarCadena(mapa[i])
+	return mapa
+	
 #---Funcion para crear la siguiente pantalla cuando el usuario presione "Empezar Partida":
 
 def juego_nuevo(screen):
@@ -281,18 +294,26 @@ def facil_liquid (screen):
     screen.blit(previo, (0,0))	
     pygame.display.flip()
     pygame.time.delay(5200)   
-
+    puntos = 0
+    clock = pygame.time.Clock()
+    
     fondo = load_image('fondoliquid.jpg');
     pygame.display.set_caption("Snake Eater")
     clock = pygame.time.Clock()
-    importar_mapa = mapa("mapa.txt")
+    importar_mapa = Mapa("mapa.txt")
+    serpiente = Snake(importar_mapa)
     
     while True:
 
-        time = clock.tick(100)
+        time = clock.tick(60)
         keys = pygame.key.get_pressed()
         salir(keys)
 
+	puntos += serpiente.mover(importar_mapa, keys)
+	if importar_mapa.mapa[serpiente.snake[0][0]][serpiente.snake[0][1]] == 1 or importar_mapa.mapa[serpiente.snake[0][0]][serpiente.snake[0][1]] == 2:
+		break
+
+        serpiente.actualizar(importar_mapa)
         screen.blit(fondo, (0,0))
         importar_mapa.crear_mapa(screen)
         pygame.display.flip()
