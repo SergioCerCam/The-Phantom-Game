@@ -189,32 +189,32 @@ class Snake:
 	def mover(self, mapa, keys):
 		if keys[K_UP]:
 			if self.ultimo != 3:
-				nuevo = [self.snake[1][0]-1, self.snake[0][1]]
+				nuevo = [self.snake[0][0]-1, self.snake[0][1]]
 				self.snake = comienzo(self.snake, nuevo)
 				if mapa.mapa[nuevo[0]][nuevo[1]] != 3:
 					self.snake.pop()
-				self.ultimo = 3
+				self.ultimo = 4
 		elif keys[K_DOWN]:
 			if self.ultimo != 4:
 				nuevo = [self.snake[0][0]+1, self.snake[0][1]]
 				self.snake = comienzo(self.snake, nuevo)
 				if mapa.mapa[nuevo[0]][nuevo[1]] != 3:
 					self.snake.pop()
-				self.ultimo = 4
+				self.ultimo = 3
 		elif keys[K_LEFT]:
 			if self.ultimo != 1:
 				nuevo = [self.snake[0][0], self.snake[0][1]-1]
 				self.snake = comienzo(self.snake, nuevo)
 				if mapa.mapa[nuevo[0]][nuevo[1]] != 3:
 					self.snake.pop()
-				self.ultimo = 1
+				self.ultimo = 2
 		elif keys[K_RIGHT]:
 			if self.ultimo != 2:
 				nuevo = [self.snake[0][0], self.snake[0][1]+1]
 				self.snake = comienzo(self.snake, nuevo)
 				if mapa.mapa[nuevo[0]][nuevo[1]] != 3:
 					self.snake.pop()
-				self.ultimo = 2
+				self.ultimo = 1
 				
 		if mapa.mapa[self.snake[0][0]][self.snake[0][1]] == 3:
 			mapa.alimento()
@@ -305,6 +305,7 @@ def facil_liquid (screen):
     importar_mapa = Mapa("mapa.txt")
     serpiente = Snake(importar_mapa)
     
+
     while True:
 
         time = clock.tick(60)
@@ -314,10 +315,10 @@ def facil_liquid (screen):
 	puntos += serpiente.mover(importar_mapa, keys)
 	if importar_mapa.mapa[serpiente.snake[0][0]][serpiente.snake[0][1]] == 1 or importar_mapa.mapa[serpiente.snake[0][0]][serpiente.snake[0][1]] == 2:
 		break
-
+        textoY, textoX = texto("Puntuacion "+str(puntos), 95, 400, (255, 255, 255), 18)
         serpiente.actualizar(importar_mapa)
         screen.blit(fondo, (0,0))
-    
+        screen.blit(textoY, textoX)
         importar_mapa.crear_mapa(screen)
         pygame.display.flip()
         pygame.time.delay(100)
@@ -331,12 +332,15 @@ def normal_solid (screen):
     previo = load_image('previo.jpg');
     screen.blit(previo, (0,0))	
     pygame.display.flip()
-    pygame.time.delay(5200)
+    pygame.time.delay(5200)   
+    puntos = 0
+    clock = pygame.time.Clock()
     
     fondo = load_image('fondosolid.jpg');
     pygame.display.set_caption("Snake Eater")
     clock = pygame.time.Clock()
-    importar_mapa = mapa("mapa.txt")
+    importar_mapa = Mapa("mapa2.txt")
+    serpiente = Snake(importar_mapa)
     
 
     while True:
@@ -344,7 +348,14 @@ def normal_solid (screen):
         keys = pygame.key.get_pressed()
         salir(keys)
 
+	puntos += serpiente.mover(importar_mapa, keys)
+	if importar_mapa.mapa[serpiente.snake[0][0]][serpiente.snake[0][1]] == 1 or importar_mapa.mapa[serpiente.snake[0][0]][serpiente.snake[0][1]] == 2:
+		break
+        textoY, textoX = texto("Puntuacion "+str(puntos), 95, 400, (255, 255, 255), 18)
+
+        serpiente.actualizar(importar_mapa)
         screen.blit(fondo, (0,0))
+        screen.blit(textoY, textoX)
         importar_mapa.crear_mapa(screen)
         pygame.display.flip()
         pygame.time.delay(100)
@@ -358,12 +369,15 @@ def dificil_bigboss (screen):
     previo = load_image('previo.jpg');
     screen.blit(previo, (0,0))	
     pygame.display.flip()
-    pygame.time.delay(5200)
-  
+    pygame.time.delay(5200)   
+    puntos = 0
+    clock = pygame.time.Clock()
+    
     fondo = load_image('fondobigboss.jpg');
     pygame.display.set_caption("Snake Eater")
     clock = pygame.time.Clock()
-    importar_mapa = mapa("mapa.txt")
+    importar_mapa = Mapa("mapa3.txt")
+    serpiente = Snake(importar_mapa)
     
 
     while True:
@@ -371,9 +385,16 @@ def dificil_bigboss (screen):
         keys = pygame.key.get_pressed()
         salir(keys)
 
+	puntos += serpiente.mover(importar_mapa, keys)
+	if importar_mapa.mapa[serpiente.snake[0][0]][serpiente.snake[0][1]] == 1 or importar_mapa.mapa[serpiente.snake[0][0]][serpiente.snake[0][1]] == 2:
+		break
+        textoY, textoX = texto("Puntuacion "+str(puntos), 95, 400, (255, 255, 255), 18)
+
+        serpiente.actualizar(importar_mapa)
         screen.blit(fondo, (0,0))
+        screen.blit(textoY, textoX)
         importar_mapa.crear_mapa(screen)
-        pygame.display.flip()       
+        pygame.display.flip()
         pygame.time.delay(100)
  
 #---Pantalla de creditos:
