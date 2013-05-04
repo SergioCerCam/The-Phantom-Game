@@ -159,8 +159,8 @@ class Mapa(pygame.sprite.Sprite):
 	def alimento(self):
 		a = 1
 		while a:
-			fil = random.randint(1, self.fila)
-			col = random.randint(1, self.colu)
+			fil = random.randint(1, self.fila-1)
+			col = random.randint(1, self.colu-1)
 			if self.mapa[fil][col] == 0:
 				self.mapa[fil][col] = 3
 				a = 0
@@ -171,10 +171,11 @@ class Snake:
 			for s in range(importar_mapa.colu):
 				if importar_mapa.mapa[t][s] == 2:
 					for n in range(4):
-						self.snake.append([t, s])
+						self.snake.append([t, s-n])
 					break
 		self.ultimo = 1
-				
+		self.actualizar(importar_mapa)
+		
 	def actualizar(self, mapa):
 		for x in range(mapa.fila):
 			for y in range(mapa.colu):
@@ -202,14 +203,14 @@ class Snake:
 				self.ultimo = 4
 		elif keys[K_LEFT]:
 			if self.ultimo != 1:
-				nuevo = [self.snake[1][0]-1, self.snake[0][1]-1]
+				nuevo = [self.snake[0][0], self.snake[0][1]-1]
 				self.snake = comienzo(self.snake, nuevo)
 				if mapa.mapa[nuevo[0]][nuevo[1]] != 3:
 					self.snake.pop()
 				self.ultimo = 1
 		elif keys[K_RIGHT]:
 			if self.ultimo != 2:
-				nuevo = [self.snake[0][0]+1, self.snake[0][1]+1]
+				nuevo = [self.snake[0][0], self.snake[0][1]+1]
 				self.snake = comienzo(self.snake, nuevo)
 				if mapa.mapa[nuevo[0]][nuevo[1]] != 3:
 					self.snake.pop()
@@ -217,7 +218,8 @@ class Snake:
 				
 		if mapa.mapa[self.snake[0][0]][self.snake[0][1]] == 3:
 			mapa.alimento()
-			return 0
+			return 1
+		return 0
 		
 
 
@@ -315,6 +317,7 @@ def facil_liquid (screen):
 
         serpiente.actualizar(importar_mapa)
         screen.blit(fondo, (0,0))
+    
         importar_mapa.crear_mapa(screen)
         pygame.display.flip()
         pygame.time.delay(100)
