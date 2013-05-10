@@ -138,7 +138,7 @@ class Mapa(pygame.sprite.Sprite):
 		self.snake = load_image("serpiente.png")
 		self.rect_snake = self.snake.get_rect()
 		
-		self.comida = load_image("comida1.png", True)
+		self.comida = load_image("comida.png", True)
 		self.rect_comida = self.comida.get_rect()
 		
 		self.mapa = importar_mapa(archivotxt)
@@ -299,6 +299,8 @@ def facil_liquid (screen):
     puntos = 0
     clock = pygame.time.Clock()
     
+    pygame.mixer.music.load("liquid.mp3")
+    pygame.mixer.music.play(-1)
     fondo = load_image('fondoliquid.jpg');
     pygame.display.set_caption("Snake Eater")
     clock = pygame.time.Clock()
@@ -314,14 +316,16 @@ def facil_liquid (screen):
 
 	puntos += serpiente.mover(importar_mapa, keys)
 	if importar_mapa.mapa[serpiente.snake[0][0]][serpiente.snake[0][1]] == 1 or importar_mapa.mapa[serpiente.snake[0][0]][serpiente.snake[0][1]] == 2:
-		break
+		break      
+	
+     
         textoY, textoX = texto("Puntuacion "+str(puntos), 95, 400, (255, 255, 255), 18)
         serpiente.actualizar(importar_mapa)
         screen.blit(fondo, (0,0))
         screen.blit(textoY, textoX)
         importar_mapa.crear_mapa(screen)
         pygame.display.flip()
-        pygame.time.delay(100)
+        pygame.time.delay(100)     
  
 #---Nivel Normal del juego:
 
@@ -335,7 +339,9 @@ def normal_solid (screen):
     pygame.time.delay(5200)   
     puntos = 0
     clock = pygame.time.Clock()
-    
+
+    pygame.mixer.music.load("solid.mp3")
+    pygame.mixer.music.play(-1)
     fondo = load_image('fondosolid.jpg');
     pygame.display.set_caption("Snake Eater")
     clock = pygame.time.Clock()
@@ -364,15 +370,17 @@ def normal_solid (screen):
 
 def dificil_bigboss (screen):
   
-    pygame.mixer.music.load("start.mp3")
+    pygame.mixer.music.load("bigboss.mp3")
     pygame.mixer.music.play(1)
-    previo = load_image('previo.jpg');
+    previo = load_image('previobb.jpg');
     screen.blit(previo, (0,0))	
     pygame.display.flip()
-    pygame.time.delay(5200)   
+    pygame.time.delay(32500)   
     puntos = 0
     clock = pygame.time.Clock()
     
+    #pygame.mixer.music.load("bigboss.mp3")
+    #pygame.mixer.music.play(-1)
     fondo = load_image('fondobigboss.jpg');
     pygame.display.set_caption("Snake Eater")
     clock = pygame.time.Clock()
