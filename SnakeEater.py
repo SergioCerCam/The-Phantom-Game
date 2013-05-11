@@ -317,8 +317,7 @@ def facil_liquid (screen):
 	puntos += serpiente.mover(importar_mapa, keys)
 	if importar_mapa.mapa[serpiente.snake[0][0]][serpiente.snake[0][1]] == 1 or importar_mapa.mapa[serpiente.snake[0][0]][serpiente.snake[0][1]] == 2:
 		break      
-	
-     
+	  
         textoY, textoX = texto("Puntuacion "+str(puntos), 95, 400, (255, 255, 255), 18)
         serpiente.actualizar(importar_mapa)
         screen.blit(fondo, (0,0))
@@ -342,6 +341,7 @@ def normal_solid (screen):
 
     pygame.mixer.music.load("solid.mp3")
     pygame.mixer.music.play(-1)
+    pygame.mixer.music.set_volume(5)
     fondo = load_image('fondosolid.jpg');
     pygame.display.set_caption("Snake Eater")
     clock = pygame.time.Clock()
@@ -357,8 +357,8 @@ def normal_solid (screen):
 	puntos += serpiente.mover(importar_mapa, keys)
 	if importar_mapa.mapa[serpiente.snake[0][0]][serpiente.snake[0][1]] == 1 or importar_mapa.mapa[serpiente.snake[0][0]][serpiente.snake[0][1]] == 2:
 		break
-        textoY, textoX = texto("Puntuacion "+str(puntos), 95, 400, (255, 255, 255), 18)
 
+        textoY, textoX = texto("Puntuacion "+str(puntos), 95, 400, (255, 255, 255), 18)
         serpiente.actualizar(importar_mapa)
         screen.blit(fondo, (0,0))
         screen.blit(textoY, textoX)
@@ -371,16 +371,14 @@ def normal_solid (screen):
 def dificil_bigboss (screen):
   
     pygame.mixer.music.load("bigboss.mp3")
-    pygame.mixer.music.play(1)
+    pygame.mixer.music.play(-1)
     previo = load_image('previobb.jpg');
     screen.blit(previo, (0,0))	
     pygame.display.flip()
-    pygame.time.delay(32500)   
+    pygame.time.delay(29000)   
     puntos = 0
     clock = pygame.time.Clock()
     
-    #pygame.mixer.music.load("bigboss.mp3")
-    #pygame.mixer.music.play(-1)
     fondo = load_image('fondobigboss.jpg');
     pygame.display.set_caption("Snake Eater")
     clock = pygame.time.Clock()
@@ -389,15 +387,15 @@ def dificil_bigboss (screen):
     
 
     while True:
-        time = clock.tick(100)
+        time = clock.tick(140)
         keys = pygame.key.get_pressed()
         salir(keys)
 
 	puntos += serpiente.mover(importar_mapa, keys)
 	if importar_mapa.mapa[serpiente.snake[0][0]][serpiente.snake[0][1]] == 1 or importar_mapa.mapa[serpiente.snake[0][0]][serpiente.snake[0][1]] == 2:
 		break
-        textoY, textoX = texto("Puntuacion "+str(puntos), 95, 400, (255, 255, 255), 18)
 
+        textoY, textoX = texto("Puntuacion "+str(puntos), 95, 400, (255, 255, 255), 18)
         serpiente.actualizar(importar_mapa)
         screen.blit(fondo, (0,0))
         screen.blit(textoY, textoX)
