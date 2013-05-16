@@ -215,6 +215,28 @@ class Snake:
 				if mapa.mapa[nuevo[0]][nuevo[1]] != 3:
 					self.snake.pop()
 				self.ultimo = 1
+
+		else:
+			if self.ultimo == 1:
+				nuevo = [self.snake[0][0], self.snake[0][0]
+				self.snake = appstart(self.snake, nuevo)
+				if mapa.mapa[nuevo[0]][nuevo[1]] != 3:
+					self.snake.pop()
+			if self.ultimo == 2:
+				nuevo = [self.snake[0][0], self.snake[0][0]
+				self.snake = appstart(self.snake, nuevo)
+				if mapa.mapa[nuevo[0]][nuevo[1]] != 3:
+					self.snake.pop()
+			if self.ultimo == 3:
+				nuevo = [self.snake[0][0], self.snake[0][0]
+				self.snake = appstart(self.snake, nuevo)
+				if mapa.mapa[nuevo[0]][nuevo[1]] != 3:
+					self.snake.pop()
+			if self.ultimo == 4:
+				nuevo = [self.snake[0][0], self.snake[0][0]
+				self.snake = appstart(self.snake, nuevo)
+				if mapa.mapa[nuevo[0]][nuevo[1]] != 3:
+					self.snake.pop()
 				
 		if mapa.mapa[self.snake[0][0]][self.snake[0][1]] == 3:
 			mapa.alimento()
