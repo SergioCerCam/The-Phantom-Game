@@ -9,9 +9,11 @@ from pygame.locals import *
 
 pygame.init()
 
+#---Reloj para gestionar el tiempo y que el juego vaya a una velocidad determinada:
+
 clock = pygame.time.Clock()
 
-#Cancion principal del juego:
+#---Cancion principal del juego:
 
 pygame.mixer.music.load("menu.mp3")
 pygame.mixer.music.play(-1)
@@ -144,7 +146,7 @@ class Mapa(pygame.sprite.Sprite):
         self.comida = load_image("comida.png", True)
         self.rect_comida = self.comida.get_rect()
 
-#---Aqui almacenamos el mapa en self.mapa y con self.fila y self.colu se recorre el mapa con el tamaño de las filas y las columnas:		
+#---Aqui almacenamos el mapa en self.mapa y con self.fila y self.colu se recorreran mas adelante el mapa con el tamaño de las filas y las columnas y el alimento:		
 
         self.mapa = importar_mapa(archivotxt)
         self.fila = len(self.mapa)
@@ -152,6 +154,14 @@ class Mapa(pygame.sprite.Sprite):
         self.alimento()
 	
 #---Aqui se dibuja el mapa de una forma muy sencilla, se recorre el mapa con self.fila y self.colu, de forma que cuando encuentre un 1 dibuje un sprite bloque etc. Despues mediante self.rect_bloque.w*columna y self.rect_bloque.h*fila lo que hace es localizar el ancho por la columna y la altura por la fila.
+
+#---Para crear los distintos objetos, asignare los elemetos de la siguiente manera:
+#---0 = Espacio libre en el mapa
+#---1 = Bloque en el mapa
+#---2 = Cuerpo de la serpiente
+#---3 = Comida
+#---5 = Cabeza de las serpiente
+
 
     def crear_mapa(self, screen):
         for fila in range(self.fila):
@@ -163,7 +173,7 @@ class Mapa(pygame.sprite.Sprite):
                 if self.mapa[fila][columna] == 3:
                     screen.blit(self.comida, (self.rect_comida.w*columna, self.rect_comida.h*fila))
 			
-#---Creamos el alimento con un modulo "random.randint" para que el alimento vaya apareciendo por el mapa de forma aleatoria:
+#---Creamos el alimento con un modulo "random.randint" para que el alimento vaya apareciendo por el mapa de forma aleatoria en un espacio libre (0)
 		
     def alimento(self):
         a = 1
@@ -173,6 +183,8 @@ class Mapa(pygame.sprite.Sprite):
             if self.mapa[fil][col] == 0:
                 self.mapa[fil][col] = 3
                 a = 0
+
+#---Aqui se crea la serpiente:
 
 class Snake:
     def __init__(self, importar_mapa):
@@ -186,7 +198,9 @@ class Snake:
 
         self.ultimo = 1
         self.actualizar(importar_mapa)
-		
+	
+#---Aqui se va actualizando la serpiente conforme va comiendo comida, de forma que se le va añadiendo un cuerpo (2):
+	
     def actualizar(self, mapa):
         for x in range(mapa.fila):
             for y in range(mapa.colu):
@@ -236,6 +250,8 @@ class Snake:
                 if mapa.mapa[nuevo[0]][nuevo[1]] != 3:
                     self.snake.pop()
                 self.ultimo = 1
+
+#---En esta parte lo que hacemos es que la serpiete se mueva sola:
 
         else:
 
@@ -305,7 +321,7 @@ def juego_nuevo(screen):
     fondo = load_image('juego_nuevo.jpg'); 
     screen = pygame.display.set_mode((Ancho, Alto))
     pygame.display.set_caption("Snake Eater")
-
+    
     select = 1
     
     while True:
@@ -335,7 +351,8 @@ def juego_nuevo(screen):
         pygame.time.delay(100)
         clock.tick(8)
        
-#---Nivel Facil del juego:        
+#---Nivel Facil del juego:   
+#---Se crean las distintas pantallas antes de empezar, la puntuacion, sonidos, importaciones, velocidad y teclas:     
 
 def facil_liquid (screen):
 
@@ -362,6 +379,8 @@ def facil_liquid (screen):
         time = clock.tick(60)
         keys = pygame.key.get_pressed()
         salir(keys)
+
+#---Aqui creamos la puntuacion y que cuando la serpiente choque con un bloque (1) or con sigo misma (2) salga al menu principal:
 
 	puntos += serpiente.mover(importar_mapa, keys)
 	if importar_mapa.mapa[serpiente.snake[0][0]][serpiente.snake[0][1]] == 1 or importar_mapa.mapa[serpiente.snake[0][0]][serpiente.snake[0][1]] == 2:
@@ -424,7 +443,7 @@ def dificil_bigboss (screen):
     previo = load_image('previobb.jpg');
     screen.blit(previo, (0,0))	
     pygame.display.flip()
-    pygame.time.delay(29000)   
+    pygame.time.delay(28500)   
     puntos = 0
     clock = pygame.time.Clock()
     
@@ -532,4 +551,3 @@ def main():
     
 if __name__== '__main__':
     main()
-
