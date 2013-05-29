@@ -422,7 +422,7 @@ def normal_solid (screen):
 
     while True:
 
-        time = clock.tick(100)
+        time = clock.tick(60)
         keys = pygame.key.get_pressed()
         salir(keys)
 
@@ -436,7 +436,7 @@ def normal_solid (screen):
         screen.blit(textoY, textoX)
         importar_mapa.crear_mapa(screen)
         pygame.display.flip()
-        pygame.time.delay(100)
+        pygame.time.delay(90)
 
 #---Nivel Dificil del juego:
 
@@ -459,7 +459,7 @@ def dificil_bigboss (screen):
     
 
     while True:
-        time = clock.tick(140)
+        time = clock.tick(60)
         keys = pygame.key.get_pressed()
         salir(keys)
 
@@ -473,7 +473,7 @@ def dificil_bigboss (screen):
         screen.blit(textoY, textoX)
         importar_mapa.crear_mapa(screen)
         pygame.display.flip()
-        pygame.time.delay(100)
+        pygame.time.delay(75)
  
 #---Pantalla de creditos:
 
@@ -513,7 +513,7 @@ def creditos(screen):
 	screen.blit(tex_img6, tex_rec6)
         volver(screen, select)
         pygame.display.flip()
-        pygame.time.delay(100)
+        pygame.time.delay(70)
         clock.tick(8)
 
 #---Funcion principal:
