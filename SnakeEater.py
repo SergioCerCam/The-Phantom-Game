@@ -212,6 +212,7 @@ class Snake:
             mapa.mapa[self.snake[i][0]][self.snake[i][1]] = 2
 
 #---Aqui vamos a definir el movimiento de la serpiente:
+#---Tambien definimos que al presionar la tecla no coja mas que un valor, por que si no se añaderian mas trozos de la cuenta a la serpiente y no funcionaria bien.
 						
     def mover(self, mapa, keys):
 
@@ -551,3 +552,6 @@ def main():
     
 if __name__== '__main__':
     main()
+
+
+
