@@ -436,7 +436,7 @@ def normal_solid (screen):
         screen.blit(textoY, textoX)
         importar_mapa.crear_mapa(screen)
         pygame.display.flip()
-        pygame.time.delay(90)
+        pygame.time.delay(80)
 
 #---Nivel Dificil del juego:
 
@@ -473,7 +473,7 @@ def dificil_bigboss (screen):
         screen.blit(textoY, textoX)
         importar_mapa.crear_mapa(screen)
         pygame.display.flip()
-        pygame.time.delay(75)
+        pygame.time.delay(70)
  
 #---Pantalla de creditos:
 
