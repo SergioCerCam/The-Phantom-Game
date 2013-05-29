@@ -134,6 +134,7 @@ def dificultad (screen, select):
 #---Aqui vamos a ir cargando las imagenes que serán utilizadas en el mapa como son los muros de los bordes del mapa, la serpiente y la comida:
 
 class Mapa(pygame.sprite.Sprite):
+
     def __init__(self, archivotxt):
         pygame.sprite.Sprite.__init__(self)
 		
@@ -187,6 +188,7 @@ class Mapa(pygame.sprite.Sprite):
 #---Aqui se crea la serpiente:
 
 class Snake:
+
     def __init__(self, importar_mapa):
         self.snake = []
         for t in range(importar_mapa.fila):
@@ -419,6 +421,7 @@ def normal_solid (screen):
     
 
     while True:
+
         time = clock.tick(100)
         keys = pygame.key.get_pressed()
         salir(keys)
@@ -552,6 +555,3 @@ def main():
     
 if __name__== '__main__':
     main()
-
-
-
