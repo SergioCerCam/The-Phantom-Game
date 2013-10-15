@@ -92,7 +92,7 @@ def menu(screen, select):
 
 def volver(screen, select):
 
-    if select == 4:
+    if select == 5:
         volver, volverx = texto ("Volver", Ancho/1-115, Alto/1-20, (51, 51, 204))
 
     screen.blit(volver, volverx)
@@ -108,28 +108,28 @@ def dificultad (screen, select):
         level3, level3X = texto("Dificil Big Boss", Ancho/1-548, Alto/1-40, (0, 0, 0))
         volver, volverX = texto("Volver", Ancho/1-120, Alto/1-20, (0, 0, 0))
 
-    if select == 5:
+    if select == 2:
         level1, level1X = texto("Facil Liquid", Ancho/1-548, Alto/1-160, (0, 0, 0))
 	level4, level4X = texto("Facil Solidus", Ancho/1-548, Alto/1-120, (189, 183, 6))
         level2, level2X = texto("Normal Solid", Ancho/1-548, Alto/1-80, (0, 0, 0))
         level3, level3X = texto("Dificil Big Boss", Ancho/1-548, Alto/1-40, (0, 0, 0))
         volver, volverX = texto("Volver", Ancho/1-120, Alto/1-20, (0, 0, 0))
 
-    if select == 2:
+    if select == 3:
         level1, level1X = texto("Facil Liquid", Ancho/1-548, Alto/1-160, (0, 0, 0))
 	level4, level4X = texto("Facil Solidus", Ancho/1-548, Alto/1-120, (0, 0, 0))
         level2, level2X = texto("Normal Solid", Ancho/1-548, Alto/1-80, (255, 153, 0))
         level3, level3X = texto("Dificil Big Boss", Ancho/1-548, Alto/1-40, (0, 0, 0))
         volver, volverX = texto("Volver", Ancho/1-120, Alto/1-20, (0, 0, 0))
 
-    if select == 3:
+    if select == 4:
         level1, level1X = texto("Facil Liquid", Ancho/1-548, Alto/1-160, (0, 0, 0))
 	level4, level4X = texto("Facil Solidus", Ancho/1-548, Alto/1-120, (0, 0, 0))
         level2, level2X = texto("Normal Solid", Ancho/1-548, Alto/1-80, (0, 0, 0))
         level3, level3X = texto("Dificil Big Boss", Ancho/1-548, Alto/1-40, (255, 0, 0))
         volver, volverX = texto("Volver", Ancho/1-120, Alto/1-20, (0,  0, 0))
         
-    if select == 4:
+    if select == 5:
         level1, level1X = texto("Facil Liquid", Ancho/1-548, Alto/1-160, (0, 0, 0))
 	level4, level4X = texto("Facil Solidus", Ancho/1-548, Alto/1-120, (0, 0, 0))
         level2, level2X = texto("Normal Solid", Ancho/1-548, Alto/1-80, (0, 0, 0))
@@ -359,12 +359,13 @@ def juego_nuevo(screen):
                 main()
             elif select == 1:
                 facil_liquid(screen)
-            elif select == 2:
-                normal_solid(screen)
-            elif select == 3:
-                dificil_bigboss(screen)
-	    elif select == 5:
+	    elif select == 2:
 		facil_solidus(screen)
+            elif select == 3:
+                normal_solid(screen)
+            elif select == 4:
+                dificil_bigboss(screen)
+
 
         screen.blit(fondo, (0,0))
         dificultad(screen, select)
