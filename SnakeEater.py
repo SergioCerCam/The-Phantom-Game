@@ -366,7 +366,7 @@ def juego_nuevo(screen):
 	    select +=1
 
         if keys[K_SPACE]:
-            if select == 4:
+            if select == 6:
                 main()
             elif select == 1:
                 facil_liquid(screen)
