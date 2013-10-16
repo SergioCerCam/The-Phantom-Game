@@ -151,10 +151,6 @@ def dificultad (screen, select):
         volver, volverX = texto("Volver", Ancho/1-120, Alto/1-20, (51, 51, 204))
 
 
-
-
-
-
     screen.blit(level1, level1X)
     screen.blit(level4, level4X)
     screen.blit(level5, level5X)
@@ -367,7 +363,7 @@ def juego_nuevo(screen):
         if keys[K_UP] and select != 1:
             select -=1
 
-	elif keys[K_DOWN] and select != 5:
+	elif keys[K_DOWN] and select != 6:
 	    select +=1
 
         if keys[K_SPACE]:
@@ -377,9 +373,11 @@ def juego_nuevo(screen):
                 facil_liquid(screen)
 	    elif select == 2:
 		facil_solidus(screen)
-            elif select == 3:
-                normal_solid(screen)
+	    elif select == 3:
+		normal_naked(screen)
             elif select == 4:
+                normal_solid(screen)
+            elif select == 5:
                 dificil_bigboss(screen)
 
 
@@ -474,6 +472,46 @@ def facil_solidus (screen):
 
 
 #---Nivel Normal del juego:
+
+def normal_naked (screen):
+
+    pygame.mixer.music.load("start.mp3")
+    pygame.mixer.music.play(1)
+    previo = load_image('previo.jpg');
+    screen.blit(previo, (0,0))	
+    pygame.display.flip()
+    pygame.time.delay(5200)   
+    puntos = 0
+    clock = pygame.time.Clock()
+    
+    pygame.mixer.music.load("liquid.mp3")
+    pygame.mixer.music.play(-1)
+    fondo = load_image('fondoliquid.jpg');
+    pygame.display.set_caption("Snake Eater")
+    clock = pygame.time.Clock()
+    importar_mapa = Mapa("mapa.txt")
+    serpiente = Snake(importar_mapa)
+    
+
+    while True:
+
+        time = clock.tick(60)
+        keys = pygame.key.get_pressed()
+        salir(keys)
+
+
+	puntos += serpiente.mover(importar_mapa, keys)
+	if importar_mapa.mapa[serpiente.snake[0][0]][serpiente.snake[0][1]] == 1 or importar_mapa.mapa[serpiente.snake[0][0]][serpiente.snake[0][1]] == 2:
+		break      
+	  
+        textoY, textoX = texto("Puntuacion "+str(puntos), 95, 400, (255, 255, 255), 18)
+        serpiente.actualizar(importar_mapa)
+        screen.blit(fondo, (0,0))
+        screen.blit(textoY, textoX)
+        importar_mapa.crear_mapa(screen)
+        pygame.display.flip()
+        pygame.time.delay(100)  
+
 
 def normal_solid (screen):
 
