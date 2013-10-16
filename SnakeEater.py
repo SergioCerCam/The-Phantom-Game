@@ -102,50 +102,49 @@ def volver(screen, select):
 def dificultad (screen, select):
 
     if select == 1:
-        level1, level1X = texto("Facil Liquid", Ancho/1-548, Alto/1-160, (153, 255, 0))
-	level4, level4X = texto("Facil Solidus", Ancho/1-548, Alto/1-120, (0, 0, 0))
-	level5, level5X = texto("Normal Naked", Ancho/1-548, Alto/1-120, (0, 0, 0))
+        level1, level1X = texto("Facil Liquid", Ancho/1-543, Alto/1-200, (153, 255, 0))
+	level4, level4X = texto("Facil Solidus", Ancho/1-540, Alto/1-160, (0, 0, 0))
+	level5, level5X = texto("Normal Naked", Ancho/1-536, Alto/1-120, (0, 0, 0))
         level2, level2X = texto("Normal Solid", Ancho/1-554, Alto/1-80, (0, 0, 0))
         level3, level3X = texto("Dificil Big Boss", Ancho/1-548, Alto/1-40, (0, 0, 0))
         volver, volverX = texto("Volver", Ancho/1-120, Alto/1-20, (0, 0, 0))
 
     if select == 2:
-        level1, level1X = texto("Facil Liquid", Ancho/1-548, Alto/1-160, (0, 0, 0))
-	level4, level4X = texto("Facil Solidus", Ancho/1-548, Alto/1-120, (189, 183, 6))
-	level5, level5X = texto("Normal Naked", Ancho/1-548, Alto/1-120, (0, 0, 0))
+        level1, level1X = texto("Facil Liquid", Ancho/1-543, Alto/1-200, (0, 0, 0))
+	level4, level4X = texto("Facil Solidus", Ancho/1-540, Alto/1-160, (167, 185, 34))
+	level5, level5X = texto("Normal Naked", Ancho/1-536, Alto/1-120, (0, 0, 0))
         level2, level2X = texto("Normal Solid", Ancho/1-554, Alto/1-80, (0, 0, 0))
         level3, level3X = texto("Dificil Big Boss", Ancho/1-548, Alto/1-40, (0, 0, 0))
         volver, volverX = texto("Volver", Ancho/1-120, Alto/1-20, (0, 0, 0))
 
     if select == 3:
-        level1, level1X = texto("Facil Liquid", Ancho/1-548, Alto/1-160, (0, 0, 0))
-	level4, level4X = texto("Facil Solidus", Ancho/1-548, Alto/1-120, (0, 0, 0))
-	level5, level5X = texto("Normal Naked", Ancho/1-548, Alto/1-120, (0, 0, 0))
-        level2, level2X = texto("Normal Solid", Ancho/1-554, Alto/1-80, (255, 153, 0))
+        level1, level1X = texto("Facil Liquid", Ancho/1-543, Alto/1-200, (0, 0, 0))
+	level4, level4X = texto("Facil Solidus", Ancho/1-540, Alto/1-160, (0, 0, 0))
+	level5, level5X = texto("Normal Naked", Ancho/1-536, Alto/1-120, (237, 195, 80))
+        level2, level2X = texto("Normal Solid", Ancho/1-554, Alto/1-80, (0, 0, 0))
         level3, level3X = texto("Dificil Big Boss", Ancho/1-548, Alto/1-40, (0, 0, 0))
         volver, volverX = texto("Volver", Ancho/1-120, Alto/1-20, (0, 0, 0))
 
-
     if select == 4:
-        level1, level1X = texto("Facil Liquid", Ancho/1-548, Alto/1-160, (0, 0, 0))
-	level4, level4X = texto("Facil Solidus", Ancho/1-548, Alto/1-120, (0, 0, 0))
-	level5, level5X = texto("Normal Naked", Ancho/1-548, Alto/1-120, (0, 0, 0))
+        level1, level1X = texto("Facil Liquid", Ancho/1-543, Alto/1-200, (0, 0, 0))
+	level4, level4X = texto("Facil Solidus", Ancho/1-540, Alto/1-160, (0, 0, 0))
+	level5, level5X = texto("Normal Naked", Ancho/1-536, Alto/1-120, (0, 0, 0))
         level2, level2X = texto("Normal Solid", Ancho/1-554, Alto/1-80, (255, 153, 0))
         level3, level3X = texto("Dificil Big Boss", Ancho/1-548, Alto/1-40, (0, 0, 0))
         volver, volverX = texto("Volver", Ancho/1-120, Alto/1-20, (0, 0, 0))
 
     if select == 5:
-        level1, level1X = texto("Facil Liquid", Ancho/1-548, Alto/1-160, (0, 0, 0))
-	level4, level4X = texto("Facil Solidus", Ancho/1-548, Alto/1-120, (0, 0, 0))
-	level5, level5X = texto("Normal Naked", Ancho/1-548, Alto/1-120, (0, 0, 0))
+        level1, level1X = texto("Facil Liquid", Ancho/1-543, Alto/1-200, (0, 0, 0))
+	level4, level4X = texto("Facil Solidus", Ancho/1-540, Alto/1-160, (0, 0, 0))
+	level5, level5X = texto("Normal Naked", Ancho/1-536, Alto/1-120, (0, 0, 0))
         level2, level2X = texto("Normal Solid", Ancho/1-554,Alto/1-80, (0, 0, 0))
         level3, level3X = texto("Dificil Big Boss", Ancho/1-548, Alto/1-40, (255, 0, 0))
         volver, volverX = texto("Volver", Ancho/1-120, Alto/1-20, (0,  0, 0))
         
     if select == 6:
-        level1, level1X = texto("Facil Liquid", Ancho/1-548, Alto/1-160, (0, 0, 0))
-	level4, level4X = texto("Facil Solidus", Ancho/1-548, Alto/1-120, (0, 0, 0))
-	level5, level5X = texto("Normal Naked", Ancho/1-548, Alto/1-120, (0, 0, 0))
+        level1, level1X = texto("Facil Liquid", Ancho/1-543, Alto/1-200, (0, 0, 0))
+	level4, level4X = texto("Facil Solidus", Ancho/1-540, Alto/1-160, (0, 0, 0))
+	level5, level5X = texto("Normal Naked", Ancho/1-536, Alto/1-120, (0, 0, 0))
         level2, level2X = texto("Normal Solid", Ancho/1-554, Alto/1-80, (0, 0, 0))
         level3, level3X = texto("Dificil Big Boss", Ancho/1-548, Alto/1-40, (0, 0, 0))
         volver, volverX = texto("Volver", Ancho/1-120, Alto/1-20, (51, 51, 204))
