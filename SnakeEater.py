@@ -93,9 +93,9 @@ def menu(screen, select):
 def volver(screen, select):
 
     if select == 6:
-        volver, volverx = texto ("Volver", Ancho/1-115, Alto/1-20, (51, 51, 204))
+        volver, volverX = texto ("Volver", Ancho/1-115, Alto/1-20, (51, 51, 204))
 
-    screen.blit(volver, volverx)
+    screen.blit(volver, volverX)
 
 #---Menu de niveles de dificultad:
 
@@ -596,7 +596,7 @@ def creditos(screen):
     screen = pygame.display.set_mode((Ancho, Alto))
     pygame.display.set_caption("Snake Eater")
     
-    select = 4
+    select = 6
     
     while True:
         
@@ -613,7 +613,7 @@ def creditos(screen):
 
 
         if keys[K_SPACE]:
-            if select == 4:
+            if select == 6:
                 main()
 
         screen.blit(fondo, (0,0))
