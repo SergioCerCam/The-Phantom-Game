@@ -651,7 +651,7 @@ def creditos(screen):
     screen = pygame.display.set_mode((Ancho, Alto))
     pygame.display.set_caption("Snake Eater")
     
-    select = 6
+    select = 7
     
     while True:
         
@@ -668,7 +668,7 @@ def creditos(screen):
 
 
         if keys[K_SPACE]:
-            if select == 6:
+            if select == 7:
                 main()
 
         screen.blit(fondo, (0,0))
