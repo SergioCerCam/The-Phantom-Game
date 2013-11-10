@@ -587,7 +587,7 @@ def dificil_theboss (screen):
     fondo = load_image('fondotheboss.bmp');
     pygame.display.set_caption("Snake Eater")
     clock = pygame.time.Clock()
-    importar_mapa = Mapa("mapa.txt")
+    importar_mapa = Mapa("mapa4.txt")
     serpiente = Snake(importar_mapa)
     while True:
         time = clock.tick(40)
@@ -604,7 +604,7 @@ def dificil_theboss (screen):
         screen.blit(textoY, textoX)
         importar_mapa.crear_mapa(screen)
         pygame.display.flip()
-        pygame.time.delay(50)
+        pygame.time.delay(80)
 
 
 
