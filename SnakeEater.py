@@ -485,7 +485,7 @@ def facil_solidus (screen):
         screen.blit(textoY, textoX)
         importar_mapa.crear_mapa(screen)
         pygame.display.flip()
-        pygame.time.delay(100)  
+        pygame.time.delay(50)  
 
 
 #---Nivel Normal del juego:
@@ -506,7 +506,7 @@ def normal_naked (screen):
     fondo = load_image('fondonaked.bmp');
     pygame.display.set_caption("Snake Eater")
     clock = pygame.time.Clock()
-    importar_mapa = Mapa("mapa.txt")
+    importar_mapa = Mapa("mapa5.txt")
     serpiente = Snake(importar_mapa)
     
 
